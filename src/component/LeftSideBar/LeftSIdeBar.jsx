@@ -7,6 +7,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -14,7 +15,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -23,8 +24,9 @@ const LeftSIdeBar = () => {
 
   const [user, setUser] = useState(null);
   const [showSearchResult, setShowSearchResult] = useState(false);
+  const [showAllUsers, setShowAllUsers] = useState(false)
 
-  const { userData, chatData, setMessagesId, setChatUser, messageId ,setChatVisible,chatVisible } =
+  const { userData, chatData, setMessagesId, setChatUser, messageId ,setChatVisible,chatVisible,chatUser, } =
     useContext(UserContext);
   const inputHandler = async (e) => {
     try {
@@ -95,6 +97,21 @@ const LeftSIdeBar = () => {
           lastSeen: true,
         }),
       });
+
+
+      const uSnap = await getDoc(doc(db,"users",user.id))
+      const uData = uSnap.data();
+      setChat({
+        messageId: newMessageRef.id, // Store the ID of the new message
+          lastMessage: "",
+          rId: user.id,
+          updatedAt: Date.now(),
+          messageSeen: true
+          ,userData:uData
+
+      })
+      setShowSearchResult(false)
+      setChatVisible(true)
     } catch (error) {
       console.error(error);
     }
@@ -107,8 +124,21 @@ const LeftSIdeBar = () => {
     
   };
 
+useEffect(()=>{
+  const updateChatUserData = async()=>{
+if(chatUser){
+  const userRef = doc(db,"users",chatUser.userData.id)
+  const userSnap = await getDoc(userRef)
+  const userData = userSnap.data();
+  setChatUser(prev => ({...prev,userData:userData}))
+}
+  }
+  updateChatUserData()
+},[chatData])
+
+
   return (
-    <div className={`sm:bg-black sm:text-white sm:h-[75vh] bg-black w-[full] h-[100vh] text-white ${chatVisible ? "hidden sm:block" : ""}`}>
+    <div className={`sm:bg-black relative sm:text-white sm:h-[75vh] bg-black w-[full] h-[100vh] text-white ${chatVisible ? "hidden sm:block" : ""}`}>
       <div className="sm:p-[20px] p-[20px]">
         <div className="sm:flex sm:justify-between sm:items-center flex justify-between items-center">
           <img className="sm:max-w-[140px] max-w-[140px]" src={new_logo} />

@@ -14,7 +14,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 
 const Chatbox = () => {
-  const {mediaVisible,setMediaVisible, userData, messages, setMessages, chatUser, messagesId ,setChatVisible,chatVisible } =
+  const {mediaVisible,setMediaVisible, userData,setChatUser, messages, setMessages, chatUser, messagesId ,setChatVisible,chatVisible } =
     useContext(UserContext);
   const [input, setInput] = useState("");
 
@@ -136,6 +136,9 @@ const Chatbox = () => {
     setInput("");
   };
 
+  useEffect(()=>{
+    setChatUser(false)
+  },[])
   return chatUser ? (
     <div className={`chat-box sm:bg-gray-100 sm:h-[75vh] sm:relative bg-gray-100 h-[100vh] relative   ${chatVisible?"":"hidden sm:block"} ${mediaVisible?"hidden":""}  `}>
       <div className="chat-user sm:py-[10px] sm:flex sm:items-center sm:gap-[10px] sm:border-b-2 sm:border-gray-400 sm:px-[15px] py-[10px] flex items-center gap-[10px] border-b-2 border-gray-400 px-[15px]">
