@@ -1,17 +1,17 @@
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+
 import { TabsTrigger } from "@radix-ui/react-tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import logo_op from "../../assets_op/Picsart_24-09-16_13-35-58-618.png"
 import assets from "@/assets/Chat_App_Assets/assets/assets";
-import { Signup,LoginApp, SingupUsingGoogle } from "@/config/firbase";
-import { toast } from "sonner";
+import { Signup,LoginApp, SingupUsingGoogle, resetPass } from "@/config/firbase";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("")
 
-  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const loginHandler = (e) => {
     e.preventDefault()
@@ -31,9 +31,9 @@ function Login() {
   return (
     <div className="h-screen w-screen flex flex-col lg:flex-row bg-gray-50">
       {/* Logo Section */}
-      <div className="hidden lg:flex lg:w-1/2 h-full justify-center items-center bg-gradient-to-r from-purple-400 to-pink-500">
+      <div className="hidden lg:flex lg:w-1/2 h-full justify-center items-center " id="bg">
         <div className="p-8">
-          <img src={assets.logo} alt="Logo" className="max-w-xs"/>
+          <img src={logo_op} alt="Logo" className="max-w-xs"/>
         </div>
       </div>
 
@@ -96,6 +96,11 @@ function Login() {
               >
                <img className="w-[40px]" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"/> Log in Using Google 
               </Button>
+              <h4 className="font-semibold text-[14px]  text-gray-800">Forgot Password? <span className="text-purple-700 cursor-pointer " onClick={()=>resetPass(email)}>
+              
+
+                Click here to reset</span></h4>
+
             </TabsContent>
 
             {/* Sign up Form */}

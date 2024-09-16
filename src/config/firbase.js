@@ -1,15 +1,16 @@
-// whenever you have to interact with database the function should be async
+
 
 import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "sonner";
 
@@ -49,7 +50,7 @@ export const Signup = async (username, email, password) => {
     });
 
     await setDoc(doc(db, "chats", user.uid), {
-      chats: [],
+      chatsData: [],
     });
   } catch (error) {
     console.log(error);
@@ -77,3 +78,24 @@ export const SingupUsingGoogle = async () => {
     .then((result) => console.log(result))
     .catch((error) => console.log(error));
 };
+
+
+export const resetPass = async (email)=>{
+  if(!email){
+    toast("enter email")
+  }
+  try {
+    const userRef = collection(db,"users")
+    const q = query(userRef,where("email","==",email));
+    const querySnap = await getDocs(q)
+    if(!querySnap.empty){
+      await sendPasswordResetEmail(auth,email)
+      toast("password reset send on email !")
+    }
+    else{
+      toast("email does not exits")
+    }
+  } catch (error) {
+   console.log(error.message)
+  }
+}
