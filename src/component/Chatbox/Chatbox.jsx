@@ -140,7 +140,7 @@ const Chatbox = () => {
     setChatUser(false)
   },[])
   return chatUser ? (
-    <div className={`chat-box sm:bg-gray-100 sm:h-[75vh] sm:relative bg-gray-100 h-[100vh] relative   ${chatVisible?"":"hidden sm:block"} ${mediaVisible?"hidden":""}  `}>
+    <div className={`chat-box sm:bg-gray-100 sm:h-[75vh] sm:relative bg-gray-100 h-[80vh] border-t-2 border-purple-600 border-b-2 relative   ${chatVisible?"":"hidden sm:block"} ${mediaVisible?"hidden":""}  `}>
       <div className="chat-user sm:py-[10px] sm:flex sm:items-center sm:gap-[10px] sm:border-b-2 sm:border-gray-400 sm:px-[15px] py-[10px] flex items-center gap-[10px] border-b-2 border-gray-400 px-[15px]">
         <img
           className="sm:w-[38px] sm:aspect-[1/1] sm:rounded-2xl w-[38px] aspect-[1/1] rounded-2xl"

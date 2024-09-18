@@ -138,7 +138,7 @@ if(chatUser){
 
 
   return (
-    <div className={`sm:bg-black relative sm:text-white sm:h-[75vh] bg-black w-[full] h-[100vh] text-white ${chatVisible ? "hidden sm:block" : ""}`}>
+    <div className={`sm:bg-black relative sm:text-white sm:h-[75vh] bg-black w-[full] h-[80vh] text-white ${chatVisible ? "hidden sm:block" : ""}`}>
       <div className="sm:p-[20px] p-[20px]">
         <div className="sm:flex sm:justify-between sm:items-center flex justify-between items-center">
           <img className="sm:max-w-[140px] max-w-[140px]" src={new_logo} />

@@ -20,7 +20,7 @@ const RightISideBar = () => {
   },[messages])
 
   return chatUser ?  (
-    <div className={`rs sm:text-white    sm:bg-black  sm:relative sm:h-[75vh] sm:overflow-y-scroll  text-white   bg-black  relative h-[100vh] overflow-y-scroll ${mediaVisible?"":"hidden sm:block"} ${chatVisible?"":"hidden sm:block"}`}>
+    <div className={`rs sm:text-white    sm:bg-black  sm:relative sm:h-[75vh] sm:overflow-y-scroll  text-white   bg-black  relative h-[80vh] overflow-y-scroll ${mediaVisible?"":"hidden sm:block"} ${chatVisible?"":"hidden sm:block"}`}>
         <MdOutlineArrowForwardIos onClick={()=>setMediaVisible(false)} className="sm:hidden cursor-pointer font-extrabold text-[25px] m-[20px]"/>
       <div className="rs-profile sm:pt-[20px] sm:text-center sm:max-w-[70%] sm:items-center sm:justify-center sm:m-auto pt-[10px] text-center max-w-[70%] items-center justify-center m-auto ">
         <img className=" sm:w-[110px] sm:aspect-[1/1] sm:rounded-full sm:mx-auto w-[110px] aspect-[1/1] rounded-full mx-auto mb-[10px]" src={chatUser.userData.avatar} alt="" />
