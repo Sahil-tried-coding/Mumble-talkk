@@ -18,7 +18,7 @@ const Chat = () => {
   return (
     <div className="h-full my-[5rem] mx-[.5rem] sm:my-0 sm:mx-0 bg-purple-600 sm:h-[100vh] sm:bg-purple-400 sm:grid sm:place-items-center flex justify-center">
       {
-        loading?<Shimmar/>:<div className="container w-[99%] bg-slate-200 max-w-[800px] max-h-max  sm:w-[95%] sm:max-w-[1000px] sm:h-[75vh] sm:bg-gray-200 sm:grid sm:rid-cols-3">
+        loading?<Shimmar/>:<div className="container w-[99%] bg-purple-600 max-w-[800px] max-h-max  sm:w-[95%] sm:max-w-[1000px] sm:h-[75vh] sm:bg-gray-200 sm:grid sm:rid-cols-3">
         <LeftSIdeBar/>
         <Chatbox/>
         <RightISideBar/>
