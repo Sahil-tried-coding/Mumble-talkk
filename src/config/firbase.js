@@ -14,17 +14,35 @@ import { collection, getDocs, getFirestore, query, where } from "firebase/firest
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "sonner";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyArrHb0vOVd65Xr7FGVQsX5L8WN6DGXA1w",
   authDomain: "mumble-talk-17042.firebaseapp.com",
   projectId: "mumble-talk-17042",
   storageBucket: "mumble-talk-17042.appspot.com",
   messagingSenderId: "608397180850",
-  appId: "1:608397180850:web:5e46deb2d3fe1354332eab",
+  appId: "1:608397180850:web:5e46deb2d3fe1354332eab"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
+
+
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyArrHb0vOVd65Xr7FGVQsX5L8WN6DGXA1w",
+//   authDomain: "mumble-talk-17042.firebaseapp.com",
+//   projectId: "mumble-talk-17042",
+//   storageBucket: "mumble-talk-17042.appspot.com",
+//   messagingSenderId: "608397180850",
+//   appId: "1:608397180850:web:5e46deb2d3fe1354332eab",
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
