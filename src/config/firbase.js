@@ -15,18 +15,23 @@ import { setDoc, doc } from "firebase/firestore";
 import { toast } from "sonner";
 
 
+// Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyArrHb0vOVd65Xr7FGVQsX5L8WN6DGXA1w",
-  authDomain: "mumble-talk-17042.firebaseapp.com",
-  projectId: "mumble-talk-17042",
-  storageBucket: "mumble-talk-17042.appspot.com",
-  messagingSenderId: "608397180850",
-  appId: "1:608397180850:web:5e46deb2d3fe1354332eab"
+  apiKey: "AIzaSyCrcMyk7NsMnceITH9NMaA20H6dNmM5pLY",
+  authDomain: "mumble-talk-845e7.firebaseapp.com",
+  projectId: "mumble-talk-845e7",
+  storageBucket: "mumble-talk-845e7.appspot.com",
+  messagingSenderId: "436476197643",
+  appId: "1:436476197643:web:eac1bf76409082ed57c00e"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 
 
 
