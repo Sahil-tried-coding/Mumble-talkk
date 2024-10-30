@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import logo_op from "../../assets_op/Picsart_24-09-16_13-35-58-618.png"
 import assets from "@/assets/Chat_App_Assets/assets/assets";
-import { Signup,LoginApp, SingupUsingGoogle, resetPass } from "@/config/firbase";
+import { SignupUsingGoogle } from "@/config/firbase";
+
+import { Signup,LoginApp,  resetPass } from "@/config/firbase";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,7 +93,7 @@ function Login() {
               >
                 Log In
               </Button><Button
-                onClick={SingupUsingGoogle}
+                onClick={SignupUsingGoogle}
                 className="w-full bg-white text-black hover:bg-white p-3 rounded-md transition-colors border-2 border-black"
               >
                <img className="w-[40px]" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"/> Log in Using Google 
@@ -134,7 +136,7 @@ function Login() {
                 Sign Up
               </Button>
               <Button
-                onClick={SingupUsingGoogle}
+                onClick={SignupUsingGoogle}
                 className="w-full bg-white text-black hover:bg-white p-3 rounded-md transition-colors border-2 border-black"
               >
                <img className="w-[40px]" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"/> Get Started Using Google 

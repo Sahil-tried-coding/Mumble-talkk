@@ -2,6 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import {
+  signInWithRedirect, getRedirectResult,
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
@@ -15,12 +16,6 @@ import { setDoc, doc } from "firebase/firestore";
 import { toast } from "sonner";
 
 
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCrcMyk7NsMnceITH9NMaA20H6dNmM5pLY",
   authDomain: "mumble-talk-845e7.firebaseapp.com",
@@ -37,17 +32,7 @@ const app = initializeApp(firebaseConfig);
 
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyArrHb0vOVd65Xr7FGVQsX5L8WN6DGXA1w",
-//   authDomain: "mumble-talk-17042.firebaseapp.com",
-//   projectId: "mumble-talk-17042",
-//   storageBucket: "mumble-talk-17042.appspot.com",
-//   messagingSenderId: "608397180850",
-//   appId: "1:608397180850:web:5e46deb2d3fe1354332eab",
-// };
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
@@ -94,13 +79,48 @@ export const LogoutApp = async () => {
   await signOut(auth);
 };
 
-export const SingupUsingGoogle = async () => {
+export const SignupUsingGoogle = async () => {
+  const auth = getAuth();  // Ensure auth instance is available
   const provider = new GoogleAuthProvider();
 
-  signInWithPopup(auth, provider)
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+  try {
+    // Try to sign in with a popup first
+    const result = await signInWithPopup(auth, provider);
+    console.log(result.user);
+  } catch (error) {
+    // If popup fails (for example, if blocked), fall back to redirect
+    if (error.code === "auth/popup-blocked" || error.code === "auth/operation-not-supported-in-this-environment") {
+      await signInWithRedirect(auth, provider);
+    } else {
+      console.log("Error signing in:", error);
+    }
+  }
 };
+
+// Handle the result after a redirect
+export const handleRedirectResult = async () => {
+  const auth = getAuth();
+  try {
+    const result = await getRedirectResult(auth);
+    if (result) {
+      console.log(result.user);
+    }
+  } catch (error) {
+    console.log("Error after redirect:", error);
+  }
+};
+
+
+
+
+
+// export const SignupUsingGoogle = async () => {
+//   const provider = new GoogleAuthProvider();
+
+//   signInWithPopup(auth, provider)
+//     .then((result) => console.log(result))
+//     .catch((error) => console.log(error));
+// };
 
 
 export const resetPass = async (email)=>{
